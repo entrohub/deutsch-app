@@ -42,7 +42,8 @@ export default function ReviewScreen() {
       }
     }
 
-    // Sort: lower ease factor first (harder cards first)
+    // Shuffle, then prioritize harder cards (lower ease factor)
+    due.sort(() => Math.random() - 0.5);
     due.sort((a, b) => a.progress.easeFactor - b.progress.easeFactor);
 
     setDueCards(due);

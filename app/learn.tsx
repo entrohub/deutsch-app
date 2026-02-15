@@ -34,7 +34,9 @@ export default function LearnScreen() {
     const learnedIds = await getLearnedWordIds();
     const learnedSet = new Set(learnedIds);
     const unlearned = words.filter((w) => !learnedSet.has(w.id));
-    const newBatch = unlearned.slice(0, BATCH_SIZE);
+    // Shuffle then pick
+    const shuffled = [...unlearned].sort(() => Math.random() - 0.5);
+    const newBatch = shuffled.slice(0, BATCH_SIZE);
     setBatch(newBatch);
     setLoading(false);
 
